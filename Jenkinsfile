@@ -89,15 +89,17 @@ cat deployment.yml
                         script {
                             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 
-                    //withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
-                        withCredentials([string(credentialsId: 'github', variable: 'GIT_TOKEN')]) {
+                   
+                        //withCredentials([string(credentialsId: 'github', variable: 'GIT_TOKEN')]) {
                         //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh '''git config --global user.email "alouiwiss@gmail.com"
 git config --global user.name "wissem007" 
-git add .
+git add deployment.yml
 git commit -m \'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}\'
-git push https://github.com/wissem007/gitops-argocd_CI.git HEAD:master
+
 '''
+      withCredentials([gitUsernamePassword(credentialsId: 'jenkins_github', gitToolName: 'Default')]) {
+       sh 'git push https://github.com/wissem007/gitops-argocd_CI.git HEAD:master'
 
                          }
                     
