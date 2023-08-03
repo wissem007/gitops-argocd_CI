@@ -35,17 +35,19 @@ pipeline{
                     }
                     
                 }
-        //  stage("Docker build Image"){
-        //             steps{
-        //                 script {
-        //                     docker_image = docker.build "${IMAGES_NAME}"
+          stage("Docker build Image"){
+                    steps{
+                        script {
+                            // docker_image = docker.build "${IMAGES_NAME}"
+                            docker_image =  docker.build "${IMAGES_NAME}"
+                            // (IMAGES_NAME, '-f ${DOCKERFILE_PATH} .')
          
 
-        //                 }
+                         }
                     
-        //             }
+                    }
                     
-        //         }
+            }
 
 
 
