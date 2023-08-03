@@ -51,11 +51,18 @@ pipeline{
              stage("Docker push Image"){
                     steps{
                         script {
-                                                 docker.withRegistry('', REGISTRY_CREDS) {
+                        docker.withRegistry('', REGISTRY_CREDS) {
                         // Poussez l'image Docker vers votre registre
                         docker_image.push("${BUILD_NUMBER}")
                         }
+                        }
+                    }
+            }
 
+           stage("Docker build Image"){
+                    steps{
+                        script {
+                            sh "docker rmi ${IMAGES_NAME}:${IMAGE_TAG}"
          
 
                          }
