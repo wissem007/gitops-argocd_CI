@@ -98,7 +98,7 @@ git add deployment.yml
 git commit -m \'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}\'
 
 '''
-      withCredentials([gitUsernamePassword(credentialsId: 'jenkins_github', gitToolName: 'Default')]) {
+      withCredentials([gitUsernamePassword(credentialsId: 'jenkinstogithub', gitToolName: 'Default')]) {
        sh 'git push https://github.com/wissem007/gitops-argocd_CI.git HEAD:master'
 
                          }
