@@ -74,9 +74,9 @@ pipeline{
             stage("Update kubernates deploy file"){
                     steps{
                         script {
-                            sh '''cat .vscode/deployment.yml
-sed -i "s#${APP_NAME}.*#${APP_NAME}:${IMAGE_TAG}#g" .vscode/deployment.yml
-cat .vscode/deployment.yml
+                            sh '''cat deployment.yml
+sed -i "s#${APP_NAME}.*#${APP_NAME}:${IMAGE_TAG}#g" deployment.yml
+cat deployment.yml
 '''
                          }
                     
@@ -96,7 +96,7 @@ cat .vscode/deployment.yml
 git config user.name wissem007  
 git add .
 git commit -m \'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}\'
-git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/gitops-argocd_CI.git HEAD:master
+git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/gitops-argocd_CI.git HEAD:master  .vscode
 '''
 
                          }
