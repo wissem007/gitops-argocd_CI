@@ -74,9 +74,9 @@ pipeline{
             stage("Update kubernates deploy file"){
                     steps{
                         script {
-                            sh '''cat /.vscode/deployment.yml
-sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' /.vscode/deployment.yml
-cat /.vscode/deployment.yml
+                            sh '''cat .vscode/deployment.yml
+sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' .vscode/deployment.yml
+cat .vscode/deployment.yml
 '''
          
 
