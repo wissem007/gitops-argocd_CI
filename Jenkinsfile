@@ -92,8 +92,8 @@ cat deployment.yml
                     //withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
                         withCredentials([string(credentialsId: 'github', variable: 'GIT_TOKEN')]) {
                         //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
-                        sh '''git config user.email alouiwiss@gmail.com
-git config user.name wissem007  
+                        sh '''git config --global user.email "alouiwiss@gmail.com"
+git config --global user.name "wissem007" 
 git add .
 git commit -m \'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}\'
 git push https://github.com/wissem007/gitops-argocd_CI.git HEAD:master
