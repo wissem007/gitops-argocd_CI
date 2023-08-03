@@ -47,20 +47,22 @@ pipeline{
                     
                     }
             }
-            stage("Docker push Image"){
+
+             stage("Docker build Image"){
                     steps{
                         script {
-                            docker.withRegistry('', REGISTRY_CREDS) {
+                                                 docker.withRegistry('', REGISTRY_CREDS) {
                         // Poussez l'image Docker vers votre registre
                         docker_image.push("${BUILD_NUMBER}")
-                 
-                           
+                        }
+
          
 
                          }
                     
                     }
             }
+            
 
 
 
