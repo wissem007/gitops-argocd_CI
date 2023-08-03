@@ -7,7 +7,7 @@ pipeline{
         APP_NAME = "gitops-argocd_CI"
         IMAGE_TAG = "${BUILD_NUMBER}"
         IMAGES_NAME = "${DOCKERHUB_USERNAME}" + "/" + "${DOCKERHUB_USERNAME}"
-        REGISTRY_CREDS ='dockerhub'
+        REGISTRY_CREDS ='dockerHub'
     }
         
     
@@ -23,6 +23,22 @@ pipeline{
             }
              
         }
+        stage("checkout  SCM"){
+                    steps{
+                        script {
+                            git credentialsId: 'github',
+                            url: 'https://github.com/wissem007/gitops-argocd_CI.git',
+                            branch: 'master'
+
+                        }
+                    
+                    }
+                    
+                }
+
+
+
+
     }
  
 }
