@@ -89,7 +89,8 @@ cat .vscode/deployment.yml
                         script {
                             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 
-                    withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+                    //withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+                        withCredentials([string(credentialsId: 'github', variable: 'GIT_TOKEN')]) {
                         //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh '''git config user.email alouiwiss@gmail.com
 git config user.name wissem007  
