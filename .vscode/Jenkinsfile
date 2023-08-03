@@ -75,11 +75,9 @@ pipeline{
                     steps{
                         script {
                             sh '''cat .vscode/deployment.yml
-sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' .vscode/deployment.yml
+sed -i 's/${IMAGES_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' .vscode/deployment.yml
 cat .vscode/deployment.yml
 '''
-         
-
                          }
                     
                     }
