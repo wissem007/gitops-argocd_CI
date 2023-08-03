@@ -83,9 +83,11 @@ cat .vscode/deployment.yml
                     }
             }
 
-            stage('Update GIT') {
-            script {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+
+            stage("Update GIT"){
+                    steps{
+                        script {
+                            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     withCredentials([usernamePassword(credentialsId: 'jenkins_github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh '''git config user.email alouiwiss@gmail.com
@@ -95,10 +97,12 @@ git commit -m \'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}\'
 git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/gitops-argocd_CI.git HEAD:master
 '''
 
-      }
-    }
-  }
-  }
+                         }
+                    
+                    }
+            }
+
+
             
 
 
