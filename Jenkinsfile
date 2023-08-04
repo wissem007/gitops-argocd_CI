@@ -69,51 +69,10 @@ pipeline{
                          }
                     
                     }
+            } 
+            stage('Trigger ManifestUpdate') {
+                echo "triggering updatemanifestjob"
+                build job: 'gitops-argocd_CD', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
             }
-
-            stage("Update kubernates deploy file"){
-                    steps{
-                        script {
-                            sh '''cat deployment.yml
-sed -i "s#${APP_NAME}.*#${APP_NAME}:${IMAGE_TAG}#g" deployment.yml
-cat deployment.yml
-'''
-                         }
-                    
-                    }
-            }
-
-
-            stage("Update GIT"){
-                    steps{
-                        script {
-                            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-
-                   
-                        //withCredentials([string(credentialsId: 'github', variable: 'GIT_TOKEN')]) {
-                        //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
-                        sh '''git config --global user.email "alouiwiss@gmail.com"
-git config --global user.name "wissem007" 
-git add deployment.yml
-git commit -m \'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}\'
-
-'''
-      withCredentials([gitUsernamePassword(credentialsId: 'jenkins_github', gitToolName: 'Default')]) {
-       sh 'git push https://github.com/wissem007/gitops-argocd_CI.git HEAD:master'
-
-                         }
-                    
-                    }
-            }
-
-
-            
-
-
-
-
-    }
- 
-}
 }
 }
