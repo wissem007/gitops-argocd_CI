@@ -26,6 +26,7 @@ kind: Service
 metadata:
   name: flask-app-svc
 spec:
+  type: NodePort # This is the default, but we're explicitly setting it here for cl
   selector:
     app: flask-app
   ports:
