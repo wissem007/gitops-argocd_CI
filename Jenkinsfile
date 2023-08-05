@@ -53,7 +53,7 @@ pipeline{
                         script {
                         docker.withRegistry('', REGISTRY_CREDS) {
                         // Poussez l'image Docker vers votre registre
-                        docker_image.push("${BUILD_NUMBER}")
+                         app = docker_image.push("${BUILD_NUMBER}")
                         }
                         }
                     }
@@ -71,8 +71,12 @@ pipeline{
                     }
             } 
             stage('Trigger ManifestUpdate') {
+                steps{
+                    script {
                 echo "triggering updatemanifestjob"
                 build job: 'gitops-argocd_CD', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+            }
+            }
             }
 }
 }
