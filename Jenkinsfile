@@ -73,6 +73,7 @@ pipeline{
             stage('Trigger ManifestUpdate') {
                 steps{
                     script {
+                        // test 
                 echo "triggering updatemanifestjob"
                 build job: 'gitops-argocd_CD', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
             }
