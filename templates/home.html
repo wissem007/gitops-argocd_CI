@@ -4,30 +4,41 @@
     <title>Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* ... Vos styles CSS existants ... */
+        body {
+            background-color: #f8f9fa;
+        }
+        .jumbotron {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        .animated-text {
+            animation: blinkText 1s infinite;
+        }
+        .logo-container {
+            text-align: center;
+        }
+        .logo {
+            max-width: 300px; /* Ajustez la largeur de l'image */
+            height: auto;
+        }
+
+        @keyframes blinkText {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="jumbotron text-center">
         <div class="logo-container">
-            <img src="{{ url_for('static', filename='Jenkins.png') }}" alt="Logo" class="logo">
+            <img src="{{ url_for('templates', filename='Jenkins.png') }}" alt="Logo" class="logo">
         </div>
         <h1 class="display-4 animated-text">Welcome to My Flask App</h1>
-        <p class="lead">Deployment @Devops@ pipeline 100 jenkins: DevOps Tools Engineer</p>
-        
-        <!-- Ajoutez le formulaire de connexion -->
-        <form method="post" action="/login">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-        
+        <p class="lead">Deployment @Devops@ pipeline 6 jenkins: DevOps Tools Engineer</p>
     </div>
 </body>
 </html>
